@@ -1,10 +1,10 @@
 ---
 layout:     keynote
 title:         "计算机图形学2017年春季作业2"
-subtitle:   "这里目前什么都没有"
+subtitle:   "这里目前什么都没有"
 iframe:     "//huangxuan.me/sw-101-gdgdf/"
 navcolor:   "invert"
-date:       2016-05-01
+date:         2016-05-01
 author:     "slientuill-余沛然"
 tags:
     - xxxx
