@@ -26,7 +26,7 @@ tags:
 	- selfrotate：通过times的叠加，使得rotate函数中的rotateangle参数在逐步增大，并在达到临界值时反向，以达到回旋的效果， 其中小人的左半部和右半部分别使用两个参数相反的函数（selfrotateR和selfrotateL）从而实现正确的步姿
   ### 简单演示
    <video width="320" height="240" controls>  
-   <source src="https://slientuill.github.io/movie.flv" type="video/flv">
+   <source src="movie.flv" type="video/flv">
    </video>
    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://slientuill.github.io/movie" width="305" height="205"> 
     <param name="movie" value="Flvplayer.swf" />  
