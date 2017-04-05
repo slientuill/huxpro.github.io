@@ -28,3 +28,10 @@ tags:
    <video width="320" height="240" controls>  
    <source src="https://slientuill.github.io/movie.flv" type="video/flv">
    </video>
+   <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://slientuill.github.io/movie" width="305" height="205"> 
+    <param name="movie" value="Flvplayer.swf" />  
+    <param name="quality" value="high" />  
+    <param name="allowFullScreen" value="true" />  
+    <param name="FlashVars" value="vcastr_file=movies/11.flv&LogoText=test&BufferTime=3" />  
+    <embed src="Flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=movies/11.flv&LogoText=test" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="505" height="405"></embed>  
+</object>  
