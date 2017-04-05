@@ -1,19 +1,20 @@
 ---
-layout:     keynote
-title:         "计算机图形学2017年春季作业2"
-subtitle:   "这里目前什么都没有"
-navcolor:   "invert"
-date:         2016-05-01
-author:     "slientuill-余沛然"
+layout:     post
+title:		"计算机图形学2017年春季作业二"
+subtitle:    "这里目前什么都没有"
+date:	    2016-04-01 12:00:00
+author:	   "slientuill-余沛然"
+header-img: "img/post-bg-nextgen-web-pwa.jpg"
+header-mask: 0.3
+catalog:    true
 tags:
-    - xxxx
-    - 图形学
-    - xxxxxx
-    - xxxxx
+    - 图形学
+    - c++
+    - ？？？？？
 ---
 
+> 
 
-> 下滑这里查看更多内容
 
 
 ### 等待更新中
