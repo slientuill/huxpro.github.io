@@ -30,9 +30,9 @@ tags:
 <embed src="https://slientuill.github.io/movie2.mp4" autostart="true" loop="true" width="800" height="400">
 <embed src='http://player.youku.com/player.php/sid/XMjY4OTczNzk0MA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'>
 ### 视频代码
-<video src="movie2.mp4"  width="320" height="240" controls="controls">
-Your browser does not support the video tag.
-</video>
-<video src="https://slientuill.github.io/movie2.mp4"  width="320" height="240" controls="controls">
-Your browser does not support the video tag.
-</video>
+	<video src="movie2.mp4"  width="320" height="240" controls="controls">
+	Your browser does not support the video tag.
+	</video>
+	<video src="https://slientuill.github.io/movie2.mp4"  width="320" height="240" controls="controls">
+	Your browser does not support the video tag.
+	</video>
