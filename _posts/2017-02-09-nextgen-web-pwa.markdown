@@ -28,6 +28,6 @@ tags:
 <embed src="movie2.mp4" 
 autostart="true" loop="true" width="800" height="500">
 </embed>
-<embed src="slientuill.github.io/movie2.mp4" 
+<embed src="https://slientuill.github.io/movie2.mp4" 
 autostart="true" loop="true" width="800" height="500">
 </embed>
