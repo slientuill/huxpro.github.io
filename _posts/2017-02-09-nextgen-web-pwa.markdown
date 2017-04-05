@@ -29,7 +29,7 @@ tags:
   [外部网页 → ](http://v.youku.com/v_show/id_XMjY4OTczNzk0MA==.html?spm=a2hzp.8253869.0.0&from=y1.7-2#paction)
 <embed src="https://slientuill.github.io/movie2.mp4" autostart="true" loop="true" width="800" height="400">
 <embed src='http://player.youku.com/player.php/sid/XMjY4OTczNzk0MA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'>
-<video src="movie2.MP4"  width="320" height="240" controls="controls">
+<video src="movie2.mp4"  width="320" height="240" controls="controls">
 Your browser does not support the video tag.
 </video>
 <video src="https://slientuill.github.io/movie2.mp4"  width="320" height="240" controls="controls">
