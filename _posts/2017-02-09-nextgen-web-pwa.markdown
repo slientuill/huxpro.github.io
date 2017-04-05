@@ -17,7 +17,7 @@ tags:
 
 
 ### 代码
- 
+  [Demo Code → ](https://slientuill.github.com/movingman.cpp)
 ### 简单思路
  - 1 - 首先，使用opengl提供的连线函数，对于设定好的长方体八个顶点的矩阵数据进行逐一连线（drawcube函数），形成构建小人所需的基本部件（头部，躯干，肩部，四肢）
  - 2 - 使用gltranslate函数对各个部位进行摆放，形成小人的雏形，期间，使用pushmatrix和popmatrix函数，将各个部位隔离开来，同时，记得所有的translate函数rotate的函数要在drawcube方法前调用，否则摆放的位置将会形成错乱，需要注意的一点是小人的大臂和小臂属于同一结构，虽然使用了两个长方体，但中间不使用pop和push将其隔离，并且在后续的移动函数中，可以通过大臂来带动小臂旋转
@@ -26,5 +26,5 @@ tags:
 	- selfrotate：通过times的叠加，使得rotate函数中的rotateangle参数在逐步增大，并在达到临界值时反向，以达到回旋的效果， 其中小人的左半部和右半部分别使用两个参数相反的函数（selfrotateR和selfrotateL）从而实现正确的步姿
   ### 简单演示
    <video width="320" height="240" controls>  
-   <source src="movie.flv" type="video/flv">
+   <source src="https://slientuill.github.com/movie.flv" type="video/flv">
    </video>
