@@ -2,7 +2,7 @@
 layout:     post
 title:		"计算机图形学2017年春季作业二"
 subtitle:    "这里目前什么都没有"
-date:	    2016-04-01 12:00:00
+date:	    2016-01-01 12:00:00
 author:	   "slientuill-余沛然"
 header-img: "img/post-bg-nextgen-web-pwa.jpg"
 header-mask: 0.3
