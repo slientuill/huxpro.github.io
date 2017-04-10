@@ -1,14 +1,14 @@
 ---
 layout:     post
-title:      ""
-subtitle:   "ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?"
+title:      "MicroPayment，Fast hashchain verification，V2G"
+subtitle:   "论文还在缓慢更新中....."
 date:       2015-09-22
-author:     "Hux"
+author:     "slientuill"
 header-img: "img/post-bg-js-version.jpg"
 tags:
-    - 前端开发
-    - JavaScript
-    - 翻译
+    - 区块链
+    - hashchain
+    - 快速哈希验证
 ---
 
 
@@ -36,50 +36,43 @@ if(!isCancle){
 }
 //-->
 </script>
-JavaScript 有着很奇怪的命名史。
 
-1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了 JavaScript *（当然，Java 和 JavaScript 的关系，就和雷锋和雷锋塔一样 —— 并没有什么关系）*
+Vehicle-to-Grid
+networks have attracted an increasing number of research attentions in the past decade V2G networks utilize the idle electric vehicle to realize the task of peak sharing and energy storage,which benefits both the grid enterprises and the battery vehicle owners.
+//Many had been done in solveing problems in V2G grid.
+//V2G网络介绍
+为了保护电动汽车拥有者的个人信息不被泄露，许多有关的研究建议使用电子货币：比特币或以太币来与电网进行电力交易，这些货币的非中心化的账户机制能够使得用户的个人信息能够很好的保护起来，然而，使用这些货币发起的交易无论交易金额多少，每次都需要支付一定量的额外费用，而电动汽车与电网之间通常都是频繁而金额微小的交易，如果简单的采用电子货币的支付方式，将会消耗大量的计算资源，浪费大量的结算货币
+So far little has been done in micro payment
+//
+#### 基于哈希链验证的微支付
+哈希链，最初在这个<lamport>论文中被提到，通过选取一个种子x0，并对这个种子不断进行哈希运算，所得到的链便是哈希链，链中的每一个值都由其前一个值进行哈希运算得到，也即 xi=hash(xi-1),由于哈希函数具有单向性，被给予xi-1的一方无法计算得到xi，保证了xi及以后的哈希值的安全性。
+我们的微支付方案便基于该种原理，通过向收款方发送种子x0，并根据收款方提供的服务不断向其发送x1,x2,x3….等后续哈希值直到服务终止的方式，对收款方提供的服务数量进行计数，随后收款方可以根据他最后获得的xi的值，使用哈希函数计算i次得到x0，也即xi与x0之间的哈西距离i 获得得到既定报酬中的i份 
+#### 具体方案
+交易开始前，付款方和收款方协商决定哈希链的长度n，以及一次交易的额度m
+交易开始时，由付款方选取种子x0，并通过哈希函数，生成哈希链x1,x2,x3….xn，并将x0发送给收款方，收款方确认以后便可以开始提供服务
+收款方每提供一次服务，付款方便依照顺序向收款方发送一个哈希值x1,x2…xn直到服务结束
+服务结束时，收款方使用最后得到的哈希值xi，对其循环进行哈希运算，直到第i次，计算得到x0，也即xi与x0之间的哈希距离为i，则收款方便得到(i/n)*m数量的报酬。
+#### 快速哈希方案
+ 当哈希链的长度n越来越大的时候，循环使用哈希函数进行计算所需要的时间便会变得越来越无法忽视，为了节约运算资源，提升运算速度，我们提出了快速哈希验证的方案
+原有的哈希验证方案，对于获得的xi需要一直不间断的进行哈希运算，加入每次哈希运算所需要的时间为t，则完成一次交易所进行的哈希计算的时间至少为i*t;在原有方案的基础上，我们加入了数字签名验证的方法，大大降低了哈希验证所需要的时间。
+我们在原有的哈希链上，每隔固定的距离设置一个数字签名，使用收款方的公钥A，付款方的公钥B，当前位置与x0的距离i，当前位置的哈希值xi，使用付款方的私钥pkb建立一个签名sign,也即sign=(A,B,i,xi)pkb,并且每当发送到该位置时，改为发送xi和sign
+在验证时，加入间隔为100的时候，不再需要验证i个哈希值，而是只需要验证小于100个哈希值和一个签名，从而降低了哈西验证的时间，假设一次签名档的验证时间为ts此时我们的验证时间为(i%100)*t+ts
+ 
+图1，理论效率对比图
 
-![java-javascript](/img/in-post/post-js-version/javascript-java.jpg)
-<small class="img-hint">歪果仁的笑话怎么一点都不好笑</small>
-
-> 译者注：[wikipedia 的 JavaScript 词条](https://en.wikipedia.org/wiki/JavaScript#History) 更详细的叙述了这段历史
-
-1996 年，网景将 JavaScript 提交给 [ECMA International（欧洲计算机制造商协会）](http://www.ecma-international.org/) 进行标准化，并最终确定出新的语言标准，它就是 ECMAScript。自此，ECMAScript 成为所有 JavaScript 实现的基础，不过，由于 JavaScript 名字的历史原因和市场原因（很显然 ECMAScript 这个名字并不令人喜欢……），现实中我们只用 ECMAScript 称呼标准，平时都还是使用 JavaScript 来称呼这个语言。
-
-
-> 术语（译者注）：
-> 
-> * *标准（Standard）*： 用于定义与其他事物区别的一套规则
-> * *实现（Implementation）*： 某个标准的具体实施/真实实践
+#### 智能合约的原理
+* **建立合约**，由付款方将合约部署在区块链上，信息调用者将的地址（即付款方）被确认为付款方的地址。
+* **初始化**，该函数仅能够被付款方调用，由其来设置该合约的参数：
+	交付金额的大小，哈希链的根值，哈希链的长度，收款方的地址，交易最长等待时间
+* **提款**，该函数仅能够被在初始化函数中确定的收款方地址调用，且如果调用时间超过交易等待时间，则该函数无法被任何人调用
+收款方需要提供三个参数他最后一次获得的哈希值，他最后一次获得的签名值，他最后一次获得的i值；
+函数根据i的值进行少于100次的哈希运算，并将得到的值与付款方的公钥，收款方的公钥，i一起进行哈希运算
+将得到的值与签名复原出的值进行比较，一旦比对成功
+则合约中i/哈希链长度*交易金额的货币将会被发送到收款方，其余的金额将会被退回给付款方
+* **交易延迟解决方案**，该函数在当前时间超过交易等待时间之后可以被任何人调用，该函数将合约中的所有货币退还给付款方
 
 
-不过，JavaScript 开发者们并不怎么在乎这些，因为在诞生之后的 15 年里，ECMAScript 并没有多少变化，而且现实中的很多实现都已经和标准大相径庭。其实在第一版的 ECMAScript 发布后，很快又跟进发布了两个版本，但是自从 1999 年 ECMAScript 3 发布后，十年内都没有任何改动被成功添加到官方规范里。取而代之的，是各大浏览器厂商们争先进行自己的语言拓展，web 开发者们别无选择只能去尝试并且支持这些 API。即使是在 2009 年 ECMAScript 5 发布之后，仍然用了数年这些新规范才得到了浏览器的广泛支持，可是大部分开发者还是写着 ECMAScript 3 风格的代码，并不觉得有必要去了解这些规范。
 
-> 译者注：[ECMAScript 第四版草案](https://en.wikipedia.org/wiki/ECMAScript#4th_Edition_.28abandoned.29)由于太过激进而被抛弃，Adobe 的 [ActionScript 3.0](https://en.wikipedia.org/wiki/ActionScript) 是 ECMAScript edition 4 的唯一实现（ Flash 差点就统一 Web 了）
-
-到了 2012 年，事情突然开始有了转变。大家开始推动停止对旧版本 IE 浏览器的支持，用 ECMAScript 5 (ES5) 风格来编写代码也变得更加可行。与此同时，一个新的 ECMAScript 规范也开始启动。到了这时，大家开始逐渐习惯以对 ECMAScript 规范的版本支持程度来形容各种 JavaScript 实现。在正式被指名为 ECMAScript 第 6 版 (ES6) 之前，这个新的标准原本被称为 ES.Harmony（和谐）。2015 年，负责制定 ECMAScript 规范草案的委员会 TC39 决定将定义新标准的制度改为一年一次，这意味着每个新特性一旦被批准就可以添加，而不像以往一样，规范只有在整个草案完成，所有特性都没问题后才能被定稿。因此，ECMAScript 第 6 版在六月份公布之前，又被重命名为了 ECMAScript 2015（ES2015）
-
-目前，仍然有很多新的 JavaScript 特性或语法正在提议中，包括 [decorators（装饰者）](https://github.com/wycats/javascript-decorators)，[async-await（async-await 异步编程模型）](https://github.com/lukehoban/ecmascript-asyncawait) 和 [static class properties（静态类属性）](https://github.com/jeffmo/es-class-properties)。它们通常被称为 ES7，ES2016 或者 ES.Next 的特性，不过实际上它们只能被称作提案或者说可能性，毕竟 ES2016 的规范还没有完成，有可能全部都会引入，也有可能一个都没有。TC39 把一个提案分为 4 个阶段，你可以在 [Babel 的官网](https://babeljs.io/docs/usage/experimental/) 上查看各个提案目前都在哪个阶段了。
-
-所以，我们该如何使用这一大堆术语呢？下面的列表或许能帮助到你：
-
-* **ECMAScript**：一个由 ECMA International 进行标准化，TC39 委员会进行监督的语言。通常用于指代标准本身。
-* **JavaScript**：ECMAScript 标准的各种实现的最常用称呼。这个术语并不局限于某个特定版本的 ECMAScript 规范，并且可能被用于任何不同程度的任意版本的 ECMAScript 的实现。
-* **ECMAScript 5 (ES5)**：ECMAScript 的第五版修订，于 2009 年完成标准化。这个规范在所有现代浏览器中都相当完全的实现了。
-* **ECMAScript 6 (ES6) / ECMAScript 2015 (ES2015)**：ECMAScript 的第六版修订，于 2015 年完成标准化。这个标准被部分实现于大部分现代浏览器。可以查阅[这张兼容性表](http://kangax.github.io/compat-table/es6/)来查看不同浏览器和工具的实现情况。
-* **ECMAScript 2016**：预计的第七版 ECMAScript 修订，计划于明年夏季发布。这份规范具体将包含哪些特性还没有最终确定
-* **ECMAScript Proposals**：被考虑加入未来版本 ECMAScript 标准的特性与语法提案，他们需要经历五个阶段：Strawman（稻草人），Proposal（提议），Draft（草案），Candidate（候选）以及 Finished （完成）。
-
-在这整个 Blog 中，我将把目前的 ECMAScript 版本称作 ES6（因为这是大部分开发者最习以为常的），把明年的规范称作 ES2016（因为，与 ES6/ES2015 不同，这个名字将在整个标准化过程中沿用）并且将那些还没有成为 ECMAScript 定稿或草案的未来语言概念称为 ECMAScript 提案或者 JavaScript 提案。我将尽我所能在任何可能引起困惑的场合沿用这篇文章。
-
-#### 一些资源
-
-  
-
-* TC39 的 [Github 仓库](https://github.com/tc39/ecma262)上可以看到所有目前公开的提案
-* 如果你还不熟悉 ES6，Babel 有一个[很不错的特性概览](https://babeljs.io/docs/learn-es2015/)
-* 如果你希望深入 ES6，这里有两本很不错的书： Axel Rauschmayer 的 [Exploring ES6](http://exploringjs.com/)和 Nicholas Zakas 的 [Understanding ECMAScript 6](https://leanpub.com/understandinges6)。Axel 的博客 [2ality](http://www.2ality.com/) 也是很不错的 ES6 资源
 
 
 
