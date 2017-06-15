@@ -16,8 +16,7 @@ tags:
 > 
 
 
-### 代码
-  [Demo Code → ](https://slientuill.github.io/movingman.cpp)
+
 # 思路
 
 
@@ -159,7 +158,10 @@ sdk::GOSphere *light = new sdk::GOSphere;
     light->refraction_coefficient = 0;
     camera->scene->geometric_object_ptr_vec.push_back(light);
 ```
-- 
+# 效果展示
+**说明：**
+-场景中共有球体三个，平面三个，三个球体堆叠在一起，背后有两个法向量互相垂直，与视角平面成45°角的全反射无色平面，这5个物体下方是一个蓝色的平面
+![example](https://github.com/slientuill/slientuill.github.com/blob/master/img/%E6%95%88%E6%9E%9C%E5%9B%BE.jpg)
 -------------------
 
 
