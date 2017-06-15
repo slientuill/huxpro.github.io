@@ -70,6 +70,7 @@ public:
 };
 ```
 - **5** ：具体描述特定物体（平面，球体，等）在光线场景中的行为，主要是是否与光线相交，以及与光线相交后的计算（例子为平面）
+
 ```cpp
 #include "stdafx.h"
 #include "GOPlane.h"
@@ -107,6 +108,7 @@ IntersectionPoint* GOPlane::ray_intersection_ptr(const Ray &ray) const {
 }
 ```
 - **6** 定义Camera类，将3D图形投影到2d平面上
+
 ```cpp
 #include "stdafx.h"
 #include "Camera.h"
