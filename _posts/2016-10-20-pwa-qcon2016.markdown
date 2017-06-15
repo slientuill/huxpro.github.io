@@ -163,7 +163,8 @@ sdk::GOSphere *light = new sdk::GOSphere;
 -场景中共有球体三个，平面三个，三个球体堆叠在一起，背后有两个法向量互相垂直，与视角平面成45°角的全反射无色平面，这5个物体下方是一个蓝色的平面
 ![example2](https://github.com/slientuill/slientuill.github.com/blob/master/img/%E6%95%88%E6%9E%9C%E5%9B%BE.jpg?raw=true)
 -------------------
-
+# 分析
+**没有实现包围盒算法，使得光线必须遍历整个图像，运行出一个800X400的图至少需要两分钟，效率低下**
 
 
 
