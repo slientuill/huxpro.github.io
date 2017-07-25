@@ -7,11 +7,11 @@ author:	   "slientuill-余沛然"
 header-img: "img/post-bg-nextgen-web-pwa.jpg"
 header-mask: 0.3
 catalog:    true
-tags:
-    - 图形学
-    - RayTracing
-    - Phong shading
-     - Gouraud shading
+tags:  
+    图形学   
+    RayTracing  
+    Phong shading  
+    Gouraud shading
 ---
 
 > 
