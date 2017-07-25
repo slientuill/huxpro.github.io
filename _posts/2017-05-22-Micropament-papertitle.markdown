@@ -6,9 +6,9 @@ date:       2015-09-22
 author:     "slientuill"
 header-img: "img/post-bg-js-version.jpg"
 tags:
-    - 区块链
-    - hashchain
-    - 快速哈希验证
+- 区块链
+- hashchain
+- 快速哈希验证
 ---
 
 
