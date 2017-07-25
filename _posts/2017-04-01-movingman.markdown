@@ -6,13 +6,10 @@ date:	    2017-04-01 12:00:00
 author:	   "slientuill-余沛然"
 header-img: "img/post-bg-nextgen-web-pwa.jpg"
 header-mask: 0.3
-catalog:    true
+catalog:    true
 tags:
-    - 图形学
-    - c++
-    - moving man
----
-
+    - 图形学
+    - Movingman
 > 
 
 
