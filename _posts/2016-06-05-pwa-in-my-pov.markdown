@@ -125,7 +125,8 @@ func main() {
 现在来通过函数做些有趣的事情。
 
 实现一个 fibonacci 函数，返回一个函数（一个闭包）可以返回连续的斐波纳契数。
-```package main
+```
+package main
 
 import "fmt"
 
@@ -145,7 +146,6 @@ func main() {
 		fmt.Println(f())
 	}
 }
-
 ```
 
 ### 练习：Stringers
@@ -191,7 +191,8 @@ func (e ErrNegativeSqrt) Error() string
 *注意：* 在 Error 方法内调用 fmt.Sprint(e) 将会让程序陷入死循环。可以通过先转换 e 来避免这个问题：fmt.Sprint(float64(e))。请思考这是为什么呢？
 
 修改 Sqrt 函数，使其接受一个负数时，返回 ErrNegativeSqrt 值。
-```package main
+```
+package main
 
 import (
 	"fmt"
@@ -224,6 +225,4 @@ func main() {
 	fmt.Println(Sqrt(2))
 	fmt.Println(Sqrt(-2))
 }
-
-
 ```
