@@ -20,3 +20,5 @@ tags:
 bashrc 才是路径配置文件  
 -1- 把export GOPATH=...加入到~/.bashrc文件的最后  
 -2- source ~/.bashrc
+### Coding
+helper只是调用
