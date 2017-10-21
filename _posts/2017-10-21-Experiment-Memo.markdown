@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:		"备忘"
+title:		"2017年秋季实验课"
 subtitle:    "Experiment"
 date:	    2017-10-21 19:00:00
 author:	   "slientuill-余沛然"
