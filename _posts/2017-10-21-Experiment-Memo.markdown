@@ -17,9 +17,9 @@ tags:
 > 
 
 ### 信息安全
-WINDOWS64下 OPENSSL配置
--1- 下载安装 Visual Studio，OPENSSL，ActivePerl
--2- win+R 调出运行 输入cmd 回车 进入命令行
+WINDOWS64下 OPENSSL配置  
+-1- 下载安装 Visual Studio，OPENSSL，ActivePerl  
+-2- win+R 调出运行 输入cmd 回车 进入命令行  
 -3- 进入Visual studio\VC文件夹 
 ```
 >vcvarshall.bat amd64
@@ -27,10 +27,10 @@ WINDOWS64下 OPENSSL配置
 >cd ..
 >cd openssl-1.0.2l
 >perl Configure VC-WIN64A
-> ms\do_win64a
-> nmake -f ms\ntdll.mak
-> cd out32dll
-> ..\ms\test
+>ms\do_win64a
+>nmake -f ms\ntdll.mak
+>cd out32dll
+>..\ms\test
 ```
 显示多行 ....ok 即编译成功
 ### 人机交互
