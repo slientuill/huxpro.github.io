@@ -18,12 +18,25 @@ tags:
 
 ### 信息安全
 #### WINDOWS64位下 Openssl配置  
-[点击进入ActivePerl下载页](http://www.activestate.com/activeperl/downloads/)  
-[点击进入OpenSSL下载页](http://www.openssl.org/source/)  
+1. 下载安装或解压  
+[点击进入ActivePerl下载页](http://www.activestate.com/activeperl/downloads/)  
+[点击进入OpenSSL下载页](http://www.openssl.org/source/)  
 [点击进入Visual Studio下载页](http://www.visualstudio.com/)
-1. WN+R 调出运行 输入cmd 回车 进入命令行界面 jisual studio\VC文件夹 
+
+2. WIN+R 调出运行 输入cmd 回车 进入命令行界面 
+进入Visual studio\VC 文件夹
+比如我的：
+```
+>D:
+>cd visualstudio
+>cd VC
+```
+执行
 ```
 >vcvarshall.bat amd64
+```
+**在当前窗口下** 进入openssl解压目录 逐个执行
+```
 >cd openssl-1.0.2l
 >perl Configure VC-WIN64A
 >ms\do_win64a
