@@ -17,13 +17,11 @@ tags:
 > 
 
 ### 信息安全
-WINDOWS64位下 Openssl配置  
-
+#### WINDOWS64位下 Openssl配置  
 [点击进入ActivePerl下载页](http://www.activestate.com/activeperl/downloads/)  
 [点击进入OpenSSL下载页](http://www.openssl.org/source/)  
--1- 安装 Visual Studio，OPENSSL，ActivePerl  
--2- win+R 调出运行 输入cmd 回车 进入命令行  
--3- 进入Visual studio\VC文件夹 
+[点击进入Visual Studio下载页](http://www.visualstudio.com/)
+1. WN+R 调出运行 输入cmd 回车 进入命令行界面 jisual studio\VC文件夹 
 ```
 >vcvarshall.bat amd64
 >cd openssl-1.0.2l
@@ -51,19 +49,20 @@ WINDOWS64位下 Openssl配置  
 #### 代码
 ```
 #include <openssl/bio.h>
-
+#include <openssl/aes.h>  
+#include <openssl/rand.h> 
 #include <openssl/err.h>
 #include <openssl/ssl.h>
 #include <openssl/des.h>
 #include <openssl/applink.c>
+#include <openssl/rc4.h> 
 
 #pragma comment(lib, "libeay32.lib")
 #pragma comment(lib, "ssleay32.lib")
-//密钥为固定的8位
 //加密内容8位补齐，补齐方式为：少1位补一个0x01,少2位补两个0x02,...
-void des_ecb(const char *data,const char *key) {
+void des(const char *data,const char *key,int mod) {
+	DES_cblock ivec = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 	int right = 1;
-	
 	int data_len;//数据本身的长度
 	int data_lack_len;//缺少的长度
 	int data_full_len;//补齐后的长度
@@ -75,8 +74,6 @@ void des_ecb(const char *data,const char *key) {
 	unsigned char out[8];
 	
 	DES_key_schedule ks;
-
-	//**************
 	data_len = strlen(data);
 	data_lack_len = data_len % 8;
 	data_full_len = data_len + (8 - data_lack_len);
@@ -106,11 +103,39 @@ void des_ecb(const char *data,const char *key) {
 			memset(out, 0, 8);
 			memcpy(in, realData + 8 * i, 8);//每次拷贝8个字节到in中
 			/* 加密 */
-			DES_ecb_encrypt((const_DES_cblock*)in, (DES_cblock*)out, &ks, DES_ENCRYPT);
+			switch (mod) {
+			case 0:
+				DES_ecb_encrypt((const_DES_cblock*)in, (DES_cblock*)out, &ks, DES_ENCRYPT);
+				break;
+			case 1:
+				DES_ncbc_encrypt(in, out, 8, &ks, &ivec, DES_ENCRYPT);
+				break;
+			case 2:
+				DES_cfb_encrypt(in, out, 8, 8, &ks, &ivec, DES_ENCRYPT);
+				break;
+			case 3:
+				DES_ofb_encrypt(in, out, 8, 8, &ks, &ivec);
+				break;
+			}
 			//每次拷贝8个字节出来
 			memcpy(encryData + 8 * i, out, 8);
 		}
-		printf("after encrypt :\n");
+		switch (mod) {
+		case 0:
+			printf("after DES_ECB encrypt :\n");
+			break;
+		case 1:
+			printf("after DES_CBC encrypt :\n");
+			break;
+		case 2:
+			printf("after DES_CFB encrypt :\n");
+			break;
+		case 3:
+			printf("after DES_OFB encrypt :\n");
+			break;
+			
+		}
+		
 		for (i = 0; i < data_full_len; i++)
 		{
 			printf("0x%.2X ", *(encryData + i));
@@ -118,11 +143,64 @@ void des_ecb(const char *data,const char *key) {
 		printf("\n");
 	}
 }
-
+void aes(const char *data) {
+	int i = 0;
+	unsigned char key[16];
+	AES_KEY ks;
+	
+	unsigned char *encryData = NULL;
+	unsigned char *iv = NULL;
+	unsigned char *saved_iv = NULL;
+	int nr_of_bits = 0;
+	int nr_of_bytes = 0;
+	int len = 16;
+	//Zeror buffer.  
+	encryData = (unsigned char *)malloc(len);
+	iv = (unsigned char *)malloc(len);
+	saved_iv = (unsigned char *)malloc(len);
+	memset(encryData, 0, len);
+	
+	//随机生成key和初始向量 ，当然key也可以手动指定
+	RAND_pseudo_bytes(key, len);
+	RAND_pseudo_bytes(saved_iv, len);
+	memcpy(iv, saved_iv, len);
+	AES_set_encrypt_key(key, 128, &ks);
+	AES_cbc_encrypt((unsigned char*)data,encryData,16,&ks,iv,AES_ENCRYPT);
+	printf("after AES encrypt\n");
+	for (i = 0; i< 16; i++)
+	{
+		printf("0x%.2X ", *(encryData + i));
+	}
+	printf("\n");
+}
+void rc4(const char *data,const char *key) {
+	int i = 0;
+   
+	RC4_KEY ks;
+	RC4_set_key(&ks, strlen(key), (const unsigned char*)key);
+	int len = strlen(data);
+	unsigned char *encryData=NULL; 
+	encryData = (unsigned char *)malloc(len);
+	memset(encryData, 0, len + 1);//初始为0  
+	RC4(&ks, len, (const unsigned char*)data, encryData);//加密明文  
+	printf("after RC4 encrypted\n");
+	for (i = 0; i< len; i++)
+	{
+		printf("0x%.2X ", *(encryData + i));
+	}
+	printf("\n");
+}
 int main() {
 	char *data = "i have not been encrypted yet";
-	char *key = "2389342";//密钥必须为8位
-	des_ecb(data,key);
+    char *adata = "abcdefghigklmnop";//AES要求为16位
+	char *deskey = "238a3420";//密钥为8位
+	char *rc4key = "i am rc4 key";
+	des(data, deskey, 0);
+	des(data, deskey, 1);
+	des(data, deskey, 2);
+	des(data, deskey, 3);
+	aes(adata);
+	rc4(data,rc4key);
 	system("pause");
 	return 0;
 }
