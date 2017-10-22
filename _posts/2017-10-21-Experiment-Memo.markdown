@@ -219,6 +219,6 @@ int main() {
 }
 ```
 #### 输出结果
-![imgresult](slientuill.github.com/img/信息安全实验.PNG)
+![imgresult](https://github.com/slientuill/slientuill.github.com/blob/master/img/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C.PNG)
 ### 人机交互
 
