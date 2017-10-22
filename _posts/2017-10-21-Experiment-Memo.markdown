@@ -218,5 +218,7 @@ int main() {
 	return 0;
 }
 ```
+#### 输出结果
+![imgresult](slientuill.github.com/img/信息安全实验.PNG)
 ### 人机交互
 
