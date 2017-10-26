@@ -221,4 +221,7 @@ int main() {
 #### 输出结果
 ![img](https://github.com/slientuill/slientuill.github.com/blob/master/img/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C.PNG)
 ### 人机交互
+### 网络攻防
+[网上有现成的](http://blog.csdn.net/zengxyuyu/article/details/53150521?locationNum=1&fps=1)
+注意 自己做的时候 计算的地址是不一样的 需要根据自己的情况 去写buffer+100的地址
 
